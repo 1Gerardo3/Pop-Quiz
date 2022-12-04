@@ -1,0 +1,28 @@
+body {
+  background-color: aqua;
+}
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+section {
+  border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+  margin: 100px;
+}
+
+.quiz-box {
+  display: inline-block;
+  padding: 50px;
+  margin: 50px;
+  border: 3px solid black;
+}
+
+button {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 25px 5px 50px;
+}
