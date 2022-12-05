@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./Assests/style/style/style.css" />
     <title>Knowledge Quiz</title>
   </head>
@@ -11,17 +17,30 @@
     <header class="header-flex">
       <h3 id="high-score">High score</h3>
 
-      <h3 id="timer">Timer</h3>
+      <timer id="timer">Timer</timer>
     </header>
 
     <main>
       <section>
-        <div class="quiz-box">
-          <h1>Knowledge Quiz</h1>
-          <button id="start-game">Start Game</button>
+        <div class="container">
+          <div id="questions-container" class="hide">
+            <ul id="questions">
+              Question
+            </ul>
+            <div id="answer-btn" class="" btn-grid>
+              <button class="btn">Answer 1</button>
+              <button class="btn">Answer 2</button>
+              <button class="btn">Answer 3</button>
+              <button class="btn">Answer 4</button>
+            </div>
+          </div>
+
+          <div clas="controls"></div>
+          <button id="start-btn" class="start-btn btn">Start Game</button>
+          <button id="next-btn" class="next-btn btn hide">Next</button>
         </div>
       </section>
     </main>
+    <script src="./Assests/style/script/script.js"></script>
   </body>
 </html>
- 

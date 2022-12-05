@@ -1,4 +1,6 @@
 body {
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
   background-color: rgb(26, 189, 11);
 }
 .header-flex {
@@ -13,18 +15,28 @@ section {
   margin: 100px;
 }
 
-.quiz-box {
+.container {
   background-color: rgb(207, 76, 76);
   display: inline-block;
   padding: 50px;
   margin: 50px;
   border: 3px solid black;
+  border-radius: 10px;
 }
 
 button {
   background-color: green;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px 25px 5px 50px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px 50px 5px 50px;
+}
+
+#high-score{
+  padding: 10px;
+  margin: 10px;
 }
  
+#timer {
+  padding: 10px;
+  margin: 10px;
+}
