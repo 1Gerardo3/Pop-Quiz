@@ -1,42 +1,64 @@
 var startButton = document.getElementById("start-btn");
+
 var questionContainer = document.getElementById("questions-container");
+
 var questionelement = document.getElementById("questions");
+
 var answerBtn = document.getElementById("answer-btn");
-startButton.addEventListener("click", startGame);
+
 var nextButton = document.getElementById("next-btn");
+
+var score = document.getElementById("score");
+
+var randomQuestion, questionIndex;
+
 nextButton.addEventListener("click", () => {
   questionIndex++;
   setNextQuestion();
 });
-var points = document.getElementById("points");
-var randomQuestion, questionIndex;
-points.classList.add("hide");
+
+score.classList.add("hide");
+
+startButton.addEventListener("click", startGame);
+
 function startGame() {
-  console.log("started");
   clearQuestion();
   startButton.classList.add("hide");
-  questionContainer.classList.remove("hide");
+  randomQuestion = questions.sort(() => Math.random() - 0.5);
   questionIndex = 0;
-  randomQuestion = questions.sort(() => Math.random() - 1);
+  questionContainer.classList.remove("hide");
+  //   setNextQuestion()
   displayQuestion(randomQuestion[questionIndex]);
-  points.classList.remove("hide");
-  var score = 0;
-  var timeleft = 3;
+  score.classList.remove("hide");
+
+  var timeleft = 10;
   var downTimer = setInterval(function () {
     if (timeleft <= 0) {
       clearInterval(downTimer);
-      clearQuestion()
+      clearQuestion();
+
+      startButton.innerText = "Restart Qiuz";
+      startButton.classList.remove("hide");
       document.getElementById("countdown").innerHTML = "Finished You Lose";
     } else {
       document.getElementById("countdown").innerHTML =
-        timeleft + " seconds remaining  " + score;
+        timeleft + " seconds remaining  ";
     }
+
     timeleft -= 1;
   }, 1000);
 
   console.log("Your score is:", score);
+
+  console.log("start");
 }
 
+// make Questions with answers in an arrey
+
+function setNextQuestion() {
+    clearQuestion();
+    displayQuestion(randomQuestion[questionIndex]);
+  }
 
 
 function displayQuestion(question) {
@@ -48,44 +70,131 @@ function displayQuestion(question) {
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
+
     button.addEventListener("click", selectAnswer);
     answerBtn.appendChild(button);
   });
 }
 
+
+
+
 function clearQuestion() {
-  clearStatusClass(document.body);
   nextButton.classList.add("hide");
   while (answerBtn.firstChild) {
     answerBtn.removeChild(answerBtn.firstChild);
+    startButton.innerText = "Restart Qiuz";
+    startButton.classList.add("hide");
   }
 }
 
-// var correctAns = 0;
-// var wrongAns = 0;
+
+
 
 function selectAnswer(e) {
-  var selectedButton = e.target;
-  var correct = selectedButton.dataset.correct;
-  setStatusClass(document.body, correct);
+    var selectedButton = e.target;
+    var correct = selectedButton.dataset.correct;
+    setStatusClass(document.body, correct);
+    Array.from(answerBtn.children).forEach(button => {
+      setStatusClass(button, button.dataset.correct);
+    })
 
-  Array.from(answerBtn.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
-  });
-}
-function setStatusClass(_element) {
-  if (randomQuestion.length >= questionIndex + 1) {
-    nextButton.classList.remove("hide");
-  } else {
-    startButton.innerText = "Restart Qiuz";
-    startButton.classList.remove("hide");
+
   }
-}
+  
 
-function clearStatusClass(element) {
-  element.classList.remove("correct");
-  element.classList.remove("wrong");
-}
+
+
+  function setStatusClass(_element, correct) {
+    if (randomQuestion.length >= questionIndex + 1) {
+      nextButton.classList.remove("hide");
+    } else {
+      startButton.innerText = "Restart Qiuz";
+      startButton.classList.remove("hide");
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var questions = [
   {

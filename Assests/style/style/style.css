@@ -56,15 +56,7 @@ header {
   border-color: black;
 }
 
-.btn.correct {
-  --hue: var(--hue--correct);
-  color: black;
-}
 
-.btn.wrong {
-  --hue: var(--hue--wrong);
-  color: black;
-}
 
 .start-btn,
 .next-btn {
