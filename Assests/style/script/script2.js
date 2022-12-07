@@ -6,23 +6,22 @@ var questionelement = document.getElementById("questions");
 
 var answerBtn = document.getElementById("answer-btn");
 
-var nextButton = document.getElementById("next-btn");
+
 
 var scoreEl = document.getElementById("score");
 
 var randomQuestion, questionIndex;
 
-nextButton.addEventListener("click", () => {
-  questionIndex++;
-  setNextQuestion();
-});
+var score = 0;
+
+
 
 scoreEl.classList.add("hide");
 
 startButton.addEventListener("click", startGame);
 function startGame() {
   clearQuestion();
-
+console.log(startGame)
   startButton.classList.add("hide");
   questionContainer.classList.remove("hide");
   questionIndex = 0;
@@ -72,24 +71,25 @@ function startGame() {
   }
 
   function clearQuestion() {
-    nextButton.classList.add("hide");
     while (answerBtn.firstChild) {
       answerBtn.removeChild(answerBtn.firstChild);
       startButton.innerText = "Restart Qiuz";
       startButton.classList.add("hide");
     }
   }
-  var score = 0;
+  
   function selectAnswer(e) {
     var selectedButton = e.target;
-    // console.log(selectedButton);
     var correct = selectedButton.dataset.correct;
     if (correct) {
       score++;
     }
+    questionIndex++
+    setNextQuestion();
 
   }
 
+  
   var questions = [
     {
       question: "Hg is the chemical symbol of which element?",
