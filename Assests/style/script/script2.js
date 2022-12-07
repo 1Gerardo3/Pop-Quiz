@@ -21,7 +21,7 @@ scoreEl.classList.add("hide");
 startButton.addEventListener("click", startGame);
 function startGame() {
   clearQuestion();
-console.log(startGame)
+
   startButton.classList.add("hide");
   questionContainer.classList.remove("hide");
   questionIndex = 0;
@@ -52,8 +52,17 @@ console.log(startGame)
 
   function setNextQuestion() {
     clearQuestion();
-    displayQuestion(randomQuestion[questionIndex]);
+    if(questionIndex < randomQuestion.length){
+
+      displayQuestion(randomQuestion[questionIndex]);
+     }
+      else {
+      endGame();
+    }
   }
+
+
+
 
   function displayQuestion(question) {
     questionelement.innerText = question.question;
@@ -73,8 +82,8 @@ console.log(startGame)
   function clearQuestion() {
     while (answerBtn.firstChild) {
       answerBtn.removeChild(answerBtn.firstChild);
-      startButton.innerText = "Restart Qiuz";
-      startButton.classList.add("hide");
+      // startButton.innerText = "Restart Qiuz";
+      // startButton.classList.add("hide");
     }
   }
   
@@ -89,7 +98,7 @@ console.log(startGame)
 
   }
 
-  
+
   var questions = [
     {
       question: "Hg is the chemical symbol of which element?",
