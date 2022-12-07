@@ -82,27 +82,12 @@ function startGame() {
   var score = 0;
   function selectAnswer(e) {
     var selectedButton = e.target;
-    console.log(selectedButton);
+    // console.log(selectedButton);
     var correct = selectedButton.dataset.correct;
     if (correct) {
       score++;
     }
-    console.log(score);
 
-    // var correct = selectedButton.dataset.correct;
-    // setStatusClass(document.body, correct);
-    // Array.from(answerBtn.children).forEach(button => {
-    //   setStatusClass(button, button.dataset.correct);
-
-    // });
-  }
-  function setStatusClass(_element, correct) {
-    if (randomQuestion.length >= questionIndex + 1) {
-      nextButton.classList.remove("hide");
-    } else {
-      startButton.innerText = "Restart Qiuz";
-      startButton.classList.remove("hide");
-    }
   }
 
   var questions = [
