@@ -1,91 +1,139 @@
-var startButton = document.getElementById("start-btn");
-var questionContainer = document.getElementById("questions-container");
-var questionelement = document.getElementById("questions");
-var answerBtn = document.getElementById("answer-btn");
-startButton.addEventListener("click", startGame);
-var nextButton = document.getElementById("next-btn");
-nextButton.addEventListener("click", () => {
-  questionIndex++;
-  setNextQuestion();
-});
-var points = document.getElementById("points");
-var randomQuestion, questionIndex;
-points.classList.add("hide");
-function startGame() {
-  console.log("started");
-  clearQuestion();
-  startButton.classList.add("hide");
-  questionContainer.classList.remove("hide");
-  questionIndex = 0;
-  randomQuestion = questions.sort(() => Math.random() - 1);
-  displayQuestion(randomQuestion[questionIndex]);
-  points.classList.remove("hide");
-  var score = 0;
-  var timeleft = 3;
-  var downTimer = setInterval(function () {
-    if (timeleft <= 0) {
-      clearInterval(downTimer);
-      clearQuestion()
-      document.getElementById("countdown").innerHTML = "Finished You Lose";
-    } else {
-      document.getElementById("countdown").innerHTML =
-        timeleft + " seconds remaining  " + score;
-    }
-    timeleft -= 1;
-  }, 1000);
 
-  console.log("Your score is:", score);
+var startButton = document.getElementById("start-btn");
+
+var questionContainer = document.getElementById("questions-container");
+
+var questionelement = document.getElementById("questions");
+
+var answerBtn = document.getElementById("answer-btn");
+
+
+var nextButton = document.getElementById("next-btn");
+
+var points = document.getElementById("points");
+
+var randomQuestion, questionIndex;
+
+nextButton.addEventListener("click", () => {
+    questionIndex++;
+    setNextQuestion();
+});
+
+
+score.classList.add("hide");
+
+
+startButton.addEventListener("click", startGame);
+function startGame() {
+
+    
+console.log('start')
 }
 
 
+function setNextQuestion(){
 
-function displayQuestion(question) {
-  questionelement.innerText = question.question;
-  question.answers.forEach((answer) => {
-    var button = document.createElement("button");
-    button.innerText = answer.text;
-    button.classList.add("btn");
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
-    }
-    button.addEventListener("click", selectAnswer);
-    answerBtn.appendChild(button);
-  });
+}
+
+
+function displayQuestion(){
+
 }
 
 function clearQuestion() {
-  clearStatusClass(document.body);
-  nextButton.classList.add("hide");
-  while (answerBtn.firstChild) {
-    answerBtn.removeChild(answerBtn.firstChild);
-  }
+
 }
 
-// var correctAns = 0;
-// var wrongAns = 0;
 
 function selectAnswer(e) {
-  var selectedButton = e.target;
-  var correct = selectedButton.dataset.correct;
-  setStatusClass(document.body, correct);
 
-  Array.from(answerBtn.children).forEach((button) => {
-    setStatusClass(button, button.dataset.correct);
-  });
 }
+
 function setStatusClass(_element) {
-  if (randomQuestion.length >= questionIndex + 1) {
-    nextButton.classList.remove("hide");
-  } else {
-    startButton.innerText = "Restart Qiuz";
-    startButton.classList.remove("hide");
-  }
+    if (randomQuestion.length = questionIndex + 1) {
+        nextButton.classList.remove("hide");
+      } else {
+        startButton.innerText = "Restart Qiuz";
+        startButton.classList.remove("hide");
+      }
 }
 
-function clearStatusClass(element) {
-  element.classList.remove("correct");
-  element.classList.remove("wrong");
+function clearStatusClass(_element) {
+  _element.classList.remove("correct");
+  _element.classList.remove("wrong");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var questions = [
   {
