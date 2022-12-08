@@ -2,7 +2,8 @@ var startButton = document.getElementById("start-btn");
 
 var questionContainer = document.getElementById("questions-container");
 
-var questionelement = document.getElementById("questions");
+var questionElement = document.getElementById("questions");
+
 
 var answerBtn = document.getElementById("answer-btn");
 
@@ -12,6 +13,7 @@ var randomQuestion, questionIndex;
 
 startButton.addEventListener("click", startGame);
 
+var highScore = JSON.parse(localStorage.getItem('score'));
 
 function startGame() {
   clearQuestion();
@@ -22,18 +24,21 @@ console.log(startGame)
   randomQuestion = questions.sort(() => Math.random() - 0.5);
   displayQuestion(randomQuestion[questionIndex]);
   document.getElementById('score').textContent = "Score: " + score;
-  var timeleft = 10;
+  document.getElementById('high-score').textContent = "High score:" + highScore
+  var timeleft = 15;
     var downTimer = setInterval(function () {
-      if (timeleft <= 0) {
+      if (timeleft <= -1) {
         clearInterval(downTimer);
         clearQuestion();
-        startButton.innerText = "Restart Qiuz";
+        document.getElementById('questions').textContent = " Your Score : " + score;
+        startButton.innerText = "Game Over";
         startButton.classList.remove("hide");
         
        
       } else {
         document.getElementById("countdown").innerHTML =
           timeleft + " seconds remaining  ";
+
       }
 
       timeleft -= 1;
@@ -43,7 +48,7 @@ console.log(startGame)
 }
 
 function setNextQuestion() {
-  clearQuestion();
+clearQuestion()
   if (questionIndex < randomQuestion.length) {
     displayQuestion(randomQuestion[questionIndex]);
   } else {
@@ -52,15 +57,25 @@ function setNextQuestion() {
 }
 
 function endGame() {
+
+  
+  
+  document.getElementById('questions').textContent = " Your Score : " + score;
+  
   startButton.innerText = "Game Over";
   startButton.classList.remove("hide");
   
+  clearQuestion()
 
 
-}
+  }
+  
+
+
+
 
 function displayQuestion(question) {
-  questionelement.innerText = question.question;
+  questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
     var button = document.createElement("button");
     button.innerText = answer.text;
@@ -76,10 +91,13 @@ function displayQuestion(question) {
 function clearQuestion() {
   while (answerBtn.firstChild) {
     answerBtn.removeChild(answerBtn.firstChild);
+ while(questionElement.firstChild){
+    questionElement.removeChild(questionElement.firstChild)
     startButton.innerText = "Restart Qiuz";
     startButton.classList.add("hide");
   }
-}
+}}
+
 
 function selectAnswer(e) {
   var selectedButton = e.target;
@@ -88,6 +106,7 @@ function selectAnswer(e) {
     score+=10;
     console.log(score)
     document.getElementById('score').textContent = "Score: " + score;
+   localStorage.setItem('score' , JSON.stringify(score));
   }
 
   questionIndex++;
@@ -192,5 +211,4 @@ var questions = [
       { text: "Asia", wrong: false },
       { text: "Englan", wrong: false },
     ],
-  },
-];
+  }]
